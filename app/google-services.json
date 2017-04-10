@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "910508085802",
+    "firebase_url": "https://briomap-163414.firebaseio.com",
+    "project_id": "briomap-163414",
+    "storage_bucket": "briomap-163414.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910508085802:android:ca3cd39f1bbf51b7",
+        "android_client_info": {
+          "package_name": "com.briometrix.briomap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910508085802-a0ef62k2pe4licd4t6qpo5s2979d7kqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.briometrix.briomap",
+            "certificate_hash": "380fc208310a65931c427e3c64707a4cd6588a3b"
+          }
+        },
+        {
+          "client_id": "910508085802-1meer4erti49e2a80o3ef6f5p47q048b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKrzkPMQ7Khs91kfVrwuPTw0DRLShKVX0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910508085802-1meer4erti49e2a80o3ef6f5p47q048b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

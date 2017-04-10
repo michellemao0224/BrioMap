@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">BrioMap</string>
+    <string name="auth0_client_id">cFa1vJmIKZbbAeJqIAwW2skSOSSavnRZ</string>
+    <string name="auth0_domain">ironic3d.au.auth0.com</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">E-mail Address</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login Now</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">Password must over 8 digits</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="link_text"> Don\'t you have an account?</string>
+    <string name="forget_password">Don\'t you remember your password?</string>
+    <string name="send_now">Send Now</string>
+    <string name="cancel">or Cancel</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login_success">Login Success!</string>
+    <string name="signup_failed">Signup Failed!</string>
+    <string name="loading">Loading...</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="signup_success">Signup Success!</string>
+</resources>
