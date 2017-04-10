@@ -51,6 +51,6 @@
             android:background="@drawable/annotationbuttonselected2x"
             android:text="SKIP"
             android:textColor="@android:color/white"
-            tools:layout_editor_absoluteY="466dp"
+            tools:layout_editor_absoluteY="520dp"
             tools:layout_editor_absoluteX="0dp" />
 </android.support.constraint.ConstraintLayout>

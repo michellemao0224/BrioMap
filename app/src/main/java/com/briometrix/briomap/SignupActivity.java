@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SignupActivity extends BaseActivity {
@@ -24,8 +25,9 @@ public class SignupActivity extends BaseActivity {
     private static final String TAG = "SignupActivity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private EditText email,password,pswConfirmed,firstName,lastName,role;
+    private EditText email,password,pswConfirmed,firstName,lastName,chairType,gender;
     private DatabaseReference mDatabase;
+    private int mNum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +62,15 @@ public class SignupActivity extends BaseActivity {
         pswConfirmed = (EditText) findViewById(R.id.password_confirm);
         firstName = (EditText) findViewById(R.id.first_name);
         lastName = (EditText) findViewById(R.id.last_name);
-        role = (EditText) findViewById(R.id.input_wheelchair);
+        gender = (EditText) findViewById(R.id.input_gender);
+        chairType = (EditText) findViewById(R.id.input_wheelchair);
 
         findViewById(R.id.btn_signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createAccount(email.getText().toString(),password.getText().toString());
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                finish();
 
             }
         });
@@ -74,6 +79,8 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 sendEmailVerification();
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                finish();
             }
         });
 
@@ -82,10 +89,25 @@ public class SignupActivity extends BaseActivity {
     }
 
     private void createAccount(final String email, String password) {
-        final String name = firstName.getText().toString().trim() + " "+ lastName.getText().toString().trim();
-        final String mRole = role.getText().toString().trim();
-        Log.d(TAG, "createAccount:" + email);
+        final String username = usernameFromEmail(email);
+        final String mFirstName = firstName.getText().toString().trim();
+        final String mLastName = lastName.getText().toString().trim();
+        final String mGender = gender.getText().toString().trim().toLowerCase();
+        if(mGender.equals("female")){
+            mNum = 0;
+        }else if(mGender.equals("male")){
+            mNum = 1;
+        }
+        final String mChairType = chairType.getText().toString().trim().toLowerCase();
+        if(mChairType.equals("electric")){
+            mNum = 0;
+        }else if(mChairType.equals("manual")){
+            mNum = 1;
+        }
         attemptLogin();
+
+        Log.d(TAG, "createAccount:" + email);
+
             // [START create_user_with_email]
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -93,16 +115,15 @@ public class SignupActivity extends BaseActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-//                                String user_id = mAuth.getCurrentUser().getUid();
-//                                DatabaseReference current_user_db = mDatabase.child(user_id);
-//                                current_user_db.child("name").setValue(name);
-//                                current_user_db.child("role").setValue(mRole);
-
-                                mProgressDialog.dismiss();
-
-                                Intent i = new Intent(SignupActivity.this, LoginActivity.class);
-                                startActivity(i);
-                                finish();
+                                String user_id = mAuth.getCurrentUser().getUid();
+                                DatabaseReference current_user_db = mDatabase.child(user_id);
+                                current_user_db.child("users").setValue(username);
+                                current_user_db.child("first_name").setValue(mFirstName);
+                                current_user_db.child("last_name").setValue(mLastName);
+                                current_user_db.child("last_name").setValue(mNum);
+                                current_user_db.child("chair_type").setValue(mNum);
+                                Toast.makeText(SignupActivity.this, R.string.signup_success,
+                                        Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -121,6 +142,15 @@ public class SignupActivity extends BaseActivity {
                         }
                     });
             // [END create_user_with_email]
+    }
+
+
+    private String usernameFromEmail(String email) {
+        if (email.contains("@")) {
+            return email.split("@")[0];
+        } else {
+            return email;
+        }
     }
 
     /**
@@ -165,8 +195,7 @@ public class SignupActivity extends BaseActivity {
             focusView.requestFocus();
         } else {
             if(password.equals(pswConfirmed)){
-                mProgressDialog.setMessage("Signing up ...");
-                mProgressDialog.show();
+                showProgressDialog();
             }
 
         }
