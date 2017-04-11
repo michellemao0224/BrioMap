@@ -1,8 +1,141 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.briometrix.briomap.MapsActivity" />
+    android:id="@+id/yourLocationLayout"
+    tools:context="com.briometrix.briomap.MapsActivity">
+
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:background="@drawable/textfieldbackground3x">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/input2x">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="38dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/scopeicon2x" />
+
+            <EditText
+                android:id="@+id/input_search"
+                android:layout_width="230dp"
+                android:layout_height="40dp"
+                android:hint="@string/search"
+                android:inputType="textPostalAddress"/>
+
+            <Button
+                android:id="@+id/cancel_search"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:background="@drawable/closeannotationsicon2x"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/button_search"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:text="Search"
+            android:textColor="#1C86EE"
+            android:layout_marginLeft="300dp"
+            android:textAllCaps="false"
+            android:background="@android:color/transparent"
+            android:visibility="invisible"
+            />
+
+        <Button
+            android:id="@+id/button_nearby"
+            android:layout_width="175dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/greenbuttonselected2x"
+            android:text="Nearby"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/button_all"
+            android:layout_width="175dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/button_nearby"
+            android:layout_toEndOf="@+id/button_nearby"
+            android:layout_toRightOf="@+id/button_nearby"
+            android:background="@drawable/greenbutton2x"
+            android:text="All"
+            android:textAllCaps="false"
+            android:textColor="#66CD00" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="127dp"
+            android:background="@drawable/greenbutton2x">
+
+            <Button
+                android:id="@+id/info_setting"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/informationicon2x" />
+
+            <Button
+                android:id="@+id/navigation"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/locationicon2x" />
+
+            <Button
+                android:id="@+id/global"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="90dp"
+                android:background="@drawable/globalicon2x" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

@@ -26,4 +26,5 @@
     <string name="loading">Loading...</string>
     <string name="verify_email">Verify Email</string>
     <string name="signup_success">Signup Success!</string>
+    <string name="search">Search for a place</string>
 </resources>
