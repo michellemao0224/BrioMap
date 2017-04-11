@@ -27,4 +27,9 @@
     <string name="verify_email">Verify Email</string>
     <string name="signup_success">Signup Success!</string>
     <string name="search">Search for a place</string>
+    <string name="signout">Sign Out</string>
+    <string name="change_email">Change your email</string>
+    <string name="change_password">Change your password</string>
+    <string name="delete_user">Delete your account</string>
+
 </resources>

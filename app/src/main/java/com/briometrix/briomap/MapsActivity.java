@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,55 +34,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         findViewById(R.id.info_setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(MapsActivity.this, SettingActivity.class));
+                finish();
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    user.delete()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(MapsActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(MapsActivity.this, LoginActivity.class));
-                                        finish();
-                                    } else {
-                                        Toast.makeText(MapsActivity.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                }
             }
         });
-
-        // [START initialize_auth]
-        mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
 
         findViewById(R.id.global).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    mAuth.signOut();
 
-                    Toast.makeText(MapsActivity.this, "You have successfully logged out!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MapsActivity.this, LoginActivity.class));
-                    finish();
-
-                    // this listener will be called when there is change in firebase user session
-                    FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
-                        @Override
-                        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            if (user == null) {
-                                // user auth state is changed - user is null
-                                // launch login activity
-
-                            }
-                        }
-                    };
-                }
 
             }
             });
