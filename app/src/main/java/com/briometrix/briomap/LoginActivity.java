@@ -97,8 +97,7 @@ public class LoginActivity extends BaseActivity{
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    startActivity(new Intent(LoginActivity.this, MapsActivity.class));
-                    finish();
+
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -151,9 +150,6 @@ public class LoginActivity extends BaseActivity{
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
-        } else {
-            Toast.makeText(LoginActivity.this, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -193,21 +189,22 @@ public class LoginActivity extends BaseActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                        startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+                        finish();
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
+                        // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
                             Toast.makeText(LoginActivity.this, R.string.signup_failed,
                                     Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+                            finish();
+
                         }
 
-                        // [START_EXCLUDE]
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, R.string.signup_failed,
-                                    Toast.LENGTH_SHORT).show();
-                        }
                         hideProgressDialog();
                         // [END_EXCLUDE]
                     }
